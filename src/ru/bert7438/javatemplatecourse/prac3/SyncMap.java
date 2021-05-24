@@ -1,6 +1,8 @@
 package ru.bert7438.javatemplatecourse.prac3;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class SyncMap<K,V> implements Map<K,V> {
 
@@ -82,7 +84,7 @@ public class SyncMap<K,V> implements Map<K,V> {
         size++;
         return e.value;
     }
-    //TODO ALL THIS SHIT
+
     @Override
     public synchronized V remove(Object key) {
         for (Entry<K,V> i:entrySet) {
@@ -96,10 +98,15 @@ public class SyncMap<K,V> implements Map<K,V> {
     }
 
     @Override
-    public void putAll(Map<K,V> m) {
-        Set<Map.Entry<K,V>> es = m.entrySet();
-        for (Entry i:es) {
-            put(i.key, i.value);
+    public void putAll(Map m) {
+        for (Object i : m.entrySet()) {
+            var j = Entry.class.cast(i);
+
+            try {
+                put((K)(j.getKey()), (V)(j.getValue()));
+            } catch (Exception e) {
+
+            }
         }
     }
 
