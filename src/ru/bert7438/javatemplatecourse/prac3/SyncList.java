@@ -79,7 +79,8 @@ public class SyncList<E> implements List {
         boolean added = false;
         try{
             semaphore.acquire();
-            added  =list.add((E) o);
+            added = list.add((E) o);
+            semaphore.release();
         } catch (InterruptedException e){
             e.printStackTrace();
         }

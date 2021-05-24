@@ -35,6 +35,14 @@ public class SyncMap<K,V> implements Map<K,V> {
             this.value = value;
             return oldValue;
         }
+
+        @Override
+        public String toString() {
+            return "Element{" +
+                    "key=" + key +
+                    ", value=" + value +
+                    '}';
+        }
     }
 
     @Override
@@ -141,5 +149,12 @@ public class SyncMap<K,V> implements Map<K,V> {
     public SyncMap() {
         entrySet = new HashSet<>();
         size = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "SyncMap{" +
+                "entrySet=" + entrySet +
+                '}';
     }
 }
