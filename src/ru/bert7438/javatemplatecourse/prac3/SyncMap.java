@@ -57,7 +57,7 @@ public class SyncMap<K,V> implements Map<K,V> {
     }
 
     @Override
-    public boolean containsValue(Object value) {
+    public synchronized boolean containsValue(Object value) {
         for(Entry<K, V> i: entrySet)
             if (i.getKey() == value) return true;
         return false;
@@ -98,7 +98,7 @@ public class SyncMap<K,V> implements Map<K,V> {
     }
 
     @Override
-    public void putAll(Map m) {
+    public synchronized void putAll(Map m) {
         for (Object i : m.entrySet()) {
             var j = Entry.class.cast(i);
 
@@ -134,7 +134,7 @@ public class SyncMap<K,V> implements Map<K,V> {
     }
 
     @Override
-    public Set<Entry<K, V>> entrySet() {
+    public synchronized Set<Entry<K, V>> entrySet() {
         return entrySet;
     }
 
